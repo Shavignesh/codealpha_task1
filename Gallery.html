@@ -4,144 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Image Gallery</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f4f4;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
-      padding: 20px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: auto;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: transform 0.3s;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-    }
-
-    .lightbox .nav {
-      position: absolute;
-      top: 50%;
-      font-size: 2rem;
-      color: white;
-      background: rgba(0,0,0,0.5);
-      padding: 10px;
-      cursor: pointer;
-      user-select: none;
-      border-radius: 50%;
-    }
-
-    .prev {
-      left: 30px;
-    }
-
-    .next {
-      right: 30px;
-    }
-
-    .lightbox .close {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      font-size: 2rem;
-      cursor: pointer;
-      color: white;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div class="gallery" id="gallery">
-  <!-- Thumbnails -->
-  <img src="1.jpg" alt="300">
-  <img src="2.jpg" alt="300">
-  <img src="3.jpg" alt="300">
-  <img src="4.jpg" alt="300">
-  <img src="5.jpg" alt="300">
+  <img src="images/1.jpg" alt="Image 1">
+  <img src="images/2.jpg" alt="Image 2">
+  <img src="images/3.jpg" alt="Image 3">
+  <img src="images/4.jpg" alt="Image 4">
+  <img src="images/5.jpg" alt="Image 5">
 </div>
 
-<!-- Lightbox Modal -->
 <div class="lightbox" id="lightbox">
   <span class="close" id="closeBtn">&times;</span>
-  <span class="nav prev" id="prevBtn">&#10094;</span>
+  <span class="prev" id="prevBtn">&#10094;</span>
   <img id="lightboxImg" src="" alt="Large View">
-  <span class="nav next" id="nextBtn">&#10095;</span>
+  <span class="next" id="nextBtn">&#10095;</span>
 </div>
 
-<script>
-  const images = document.querySelectorAll(".gallery img");
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
-  const closeBtn = document.getElementById("closeBtn");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-
-  let currentIndex = 0;
-
-  function showImage(index) {
-    lightbox.style.display = "flex";
-    lightboxImg.src = images[index].src;
-    currentIndex = index;
-  }
-
-  images.forEach((img, index) => {
-    img.addEventListener("click", () => {
-      showImage(index);
-    });
-  });
-
-  closeBtn.addEventListener("click", () => {
-    lightbox.style.display = "none";
-  });
-
-  prevBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    showImage(currentIndex);
-  });
-
-  nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    showImage(currentIndex);
-  });
-
-  window.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-      lightbox.style.display = "none";
-    }
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
+
